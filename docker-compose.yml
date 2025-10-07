@@ -1,0 +1,48 @@
+version: '3.9'
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:latest
+    container_name: serverDb2
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Colombia2025*
+    ports:
+      - "1436:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+    networks:
+      - networkdocker
+
+  cuentasapi:
+    build: 
+      context: ./src/SystemAccountsMicroservice
+      dockerfile: ./SistemaCuentas.Api/Dockerfile
+    container_name: sistema-cuentas-container2
+    ports:
+      - "5052:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=serverDb2,1433;Database=SistemaCuentasDb;User Id=sa;Password=Colombia2025*;TrustServerCertificate=True;Encrypt=False;
+    depends_on:
+      - sqlserver
+    networks:
+      - networkdocker
+
+  librosapi:
+    build: 
+      context: ./src/SystemLibraryMicroservice
+      dockerfile: ./SistemaReservasLibros.Api/Dockerfile
+    container_name: sistema-libros-container2
+    ports:
+      - "5015:8090"
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=serverDb2,1433;Database=SistemaReservasLibrosDB;User Id=sa;Password=Colombia2025*;TrustServerCertificate=True;Encrypt=False;
+    depends_on:
+      - sqlserver
+    networks:
+      - networkdocker
+
+networks:
+  networkdocker:
+    driver: bridge
+volumes:
+  sql_data:
