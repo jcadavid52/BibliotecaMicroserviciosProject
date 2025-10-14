@@ -54,6 +54,13 @@ builder.Services.AddControllers(options =>
     options.Filters.Add<TrimStringsFilter>();
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("*", builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
 builder.Services.AddIdentity(builder.Configuration);
 builder.Services.AddTokenProvider(builder.Configuration);
 builder.Services.AddServiceRefreshToken();
@@ -72,6 +79,7 @@ app.UseMiddleware<AppExceptionHandlerMiddleware>();
 app.UseMiddleware<DatabaseExceptionMiddleware>();
 app.MapControllers();
 app.UseHttpsRedirection();
+app.UseCors("*");
 app.UseAuthentication();
 app.UseAuthorization();
 
