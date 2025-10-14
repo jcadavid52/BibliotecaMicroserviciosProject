@@ -1,0 +1,20 @@
+<p>form-login works!</p>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <input type="text" placeholder="Username" name="username" formControlName="username" />
+
+  @if(submitted() && loginForm.get('username')?.hasError('required')) {
+  <p>El usuario es requerido</p>
+  }
+
+  <input type="password" placeholder="Password" name="password" formControlName="password" />
+  @if(submitted() && loginForm.get('password')?.hasError('required')
+     ) {
+         <p>La contraseña es requerida</p>
+    }
+  <button type="submit">Ingresar</button>
+</form>
+
+<div>
+  <a [routerLink]="['/register']">Regístrate aquí</a>
+</div>

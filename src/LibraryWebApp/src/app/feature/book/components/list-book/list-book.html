@@ -1,0 +1,8 @@
+<h3>Lista Libros</h3>
+<form-filter-book (searchTitle)="onSearch($event)"></form-filter-book>
+@if(books.length === 0) {
+<p>No se encontraron libros con el filtro de búsqueda</p>
+} @else { 
+    @for (book of books; track $index) {
+    <unit-book [book]="book"></unit-book>
+} }

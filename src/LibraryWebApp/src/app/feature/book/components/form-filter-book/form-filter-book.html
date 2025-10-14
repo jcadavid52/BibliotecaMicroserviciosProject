@@ -1,0 +1,10 @@
+<div>
+  <label for="search">Buscar por título:</label>
+  <input
+    id="search"
+    type="text"
+    placeholder="buscar..."
+    [value]="initialValue"
+    [placeholder]="'Buscar...'"
+    (input)="onSearchChange($event)"  />
+</div>
