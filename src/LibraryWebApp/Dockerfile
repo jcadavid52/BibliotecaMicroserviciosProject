@@ -1,30 +1,20 @@
-# Etapa 1: Build de Angular
-FROM node:20 AS build
-
-# Crear directorio de trabajo
+# Etapa 1: Construir la app Angular
+FROM node:20-alpine AS build
 WORKDIR /app
 
-# Copiar package.json e instalar dependencias
+# Copiar los archivos necesarios
 COPY package*.json ./
 RUN npm install
 
-# Copiar el resto del proyecto
 COPY . .
-
-# Compilar la aplicación Angular (ajusta el nombre según tu proyecto)
-RUN npm run build -- --configuration=production
+RUN npm run build --prod
 
 # Etapa 2: Servir con Nginx
 FROM nginx:stable-alpine
+COPY --from=build /app/dist/LibraryWebApp/browser /usr/share/nginx/html
 
-# Copiar la build generada a la carpeta de Nginx
-COPY --from=build /app/dist/my-angular-app /usr/share/nginx/html
-
-# Copiar un archivo custom de configuración si lo deseas
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
-
-# Exponer el puerto
+# Exponer el puerto por el que se servirá la app
 EXPOSE 80
 
-# Comando por defecto
+# Comando por defecto para Nginx
 CMD ["nginx", "-g", "daemon off;"]

@@ -8,7 +8,7 @@ import { BookLayout } from "../../../layout/book-layout/book-layout";
 @Component({
     selector: 'home-book-page',
     templateUrl: './home-book-page.html',
-    imports: [ListBook, NavBook, RouterOutlet, BookLayout]
+    imports: [ListBook]
 })
 export class HomeBookPage{
 

@@ -40,6 +40,19 @@ services:
       - sqlserver
     networks:
       - networkdocker
+      
+  web:
+    build:
+      context: ./src/LibraryWebApp
+      dockerfile: ./Dockerfile
+    container_name: sistema_libros_web
+    ports:
+      - "4500:80"
+    depends_on:
+      - cuentasapi
+      - librosapi
+    networks:
+      - networkdocker
 
 networks:
   networkdocker:
