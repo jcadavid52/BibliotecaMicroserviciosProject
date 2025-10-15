@@ -1,0 +1,2 @@
+export const bookUrlApi = "https://verbose-enigma-v7xxgv6ww4x369r4-5015.app.github.dev/api/Book";
+export const accountUrlApi = "https://verbose-enigma-v7xxgv6ww4x369r4-5052.app.github.dev/api/account";
