@@ -1,6 +1,9 @@
 import { Routes } from '@angular/router';
 import { NavBook } from './feature/book/components/nav-book/nav-book';
 import { BookLayout } from './layout/book-layout/book-layout';
+import { loginGuard } from './core/guards/login-guard';
+import { createBookGuard } from './core/guards/create-book-guard';
+import { reservationBookGuard } from './core/guards/reservations-book-guard';
 
 export const routes: Routes = [
     {
@@ -22,11 +25,13 @@ export const routes: Routes = [
             },
             {
                 path: 'create',
-                loadComponent: () => import('./feature/book/pages/create-book-page').then(c => c.CreateBookPage)
+                loadComponent: () => import('./feature/book/pages/create-book-page').then(c => c.CreateBookPage),
+                canActivate: [createBookGuard]
             },
             {
                 path: 'reservations',
-                loadComponent: () => import('./feature/book/pages/reservation-book-page').then(c => c.ReservationBookPage)
+                loadComponent: () => import('./feature/book/pages/reservation-book-page').then(c => c.ReservationBookPage),
+                canActivate: [reservationBookGuard]
             }
         ]
     },
@@ -40,7 +45,12 @@ export const routes: Routes = [
             },
             {
                 path: 'login',
-                loadComponent: () => import('./feature/auth/pages/login-page').then(c => c.LoginPage)
+                loadComponent: () => import('./feature/auth/pages/login-page').then(c => c.LoginPage),
+                canActivate: [loginGuard]
+            },
+            {
+                path: 'register',
+                loadComponent: () => import('./feature/auth/pages/register-page').then(c => c.RegisterPage)
             }
         ]
     }

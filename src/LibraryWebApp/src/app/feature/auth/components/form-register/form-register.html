@@ -1,0 +1,91 @@
+<form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
+  <input type="text" placeholder="Full Name" name="fullName" formControlName="fullName" />
+  @if(submitted() && formRegister.get('fullName')?.hasError('required')) {
+
+  <div>
+    <small style="color: red">El nombre completo es requerido </small>
+  </div>
+  }
+
+  <!-- <input
+    type="text"
+    name="documentType"
+    formControlName="documentType"
+    placeholder="Ingresa número de documento"
+  />
+  @if(submitted() && formRegister.get('documentType')?.hasError('required')) {
+
+  <div>
+    <small style="color: red">El nombre completo es requerido </small>
+  </div>
+  } -->
+
+  <select name="documentType" formControlName="documentType">
+    <option value="" disabled selected>Selecciona tipo de documento</option>
+    <option value="CC">Cédula de ciudadanía</option>
+    <option value="PP">Pasaporte</option>
+    <option value="TI">Tarjeta de identidad</option>
+  </select>
+  @if(submitted() && formRegister.get('documentType')?.hasError('required')) {
+  <div>
+    <small style="color: red">El tipo de documento es requerido </small>
+  </div>
+  }
+  <input
+    type="text"
+    name="document"
+    formControlName="document"
+    placeholder="Número de documento"
+  />
+  @if(submitted() && formRegister.get('document')?.hasError('required')) {
+  <div>
+    <small style="color: red">El número de documento es requerido </small>
+  </div>
+  }
+
+  <input type="text" name="email" formControlName="email" placeholder="email" />
+  @if(submitted() && formRegister.get('email')?.hasError('required')) {
+  <div>
+    <small style="color: red">El email es requerido </small>
+  </div>
+  }
+
+  <input type="text" name="address" formControlName="address" placeholder="address" />
+  @if(submitted() && formRegister.get('address')?.hasError('required')) {
+  <div>
+    <small style="color: red">La dirección es requerida </small>
+  </div>
+  }
+
+  <input type="text" name="phoneNumber" formControlName="phoneNumber" placeholder="phoneNumber" />
+  @if(submitted() && formRegister.get('phoneNumber')?.hasError('required')) {
+  <div>
+    <small style="color: red">El número de teléfono es requerido </small>
+  </div>
+  }
+
+  <input type="password" name="password" formControlName="password" placeholder="password" />
+  @if(submitted() && formRegister.get('password')?.hasError('required')) {
+  <div>
+    <small style="color: red">El password es requerido </small>
+  </div>
+  }
+
+  <input
+    type="password"
+    placeholder="Confirm Password"
+    name="confirmPassword"
+    formControlName="confirmPassword"
+  />
+  @if(submitted() && formRegister.get('confirmPassword')?.hasError('required')) {
+  <div>
+    <small style="color: red">La confirmación de la contraseña es requerida </small>
+  </div>
+  }@else if(submitted() && formRegister.hasError('passwordMismatch')){
+  <div>
+    <small style="color: red">Las contraseñas no coinciden </small>
+  </div>
+  }
+
+  <button type="submit">Registrarse</button>
+</form>

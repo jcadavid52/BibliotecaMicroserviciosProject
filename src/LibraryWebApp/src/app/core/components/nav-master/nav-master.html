@@ -1,8 +1,22 @@
 <nav>
-    <ul>
-        <li><a routerLink="/" routerLinkActive="router-link-active">Home</a></li>
-    </ul>
-     <ul>
-        <li><a routerLink="books" routerLinkActive="router-link-active">Libros</a></li>
-    </ul>
+  <ul>
+    <li><a routerLink="/" routerLinkActive="router-link-active">Home</a></li>
+  </ul>
+  <ul>
+    <li><a routerLink="books" routerLinkActive="router-link-active">Libros</a></li>
+  </ul>
+  @if(tokenService.isAuthenticated()){
+  <ul>
+    <li>
+      <a routerLink="auth/login" routerLinkActive="router-link-active" (click)="closeSession()"
+        >Cerrar Sesión</a
+      >
+    </li>
+  </ul>
+  }@else{
+  <ul>
+    <li><a routerLink="auth/login" routerLinkActive="router-link-active">Iniciar Sesión</a></li>
+    <li><a routerLink='auth/register' routerLinkActive="router-link-active">Regístrate aquí</a></li>
+  </ul>
+  }
 </nav>

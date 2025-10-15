@@ -38,11 +38,17 @@ export class TokenService {
     }
 
     public getAuthToken(): string {
-    return this.accessToken ?? localStorage.getItem('auth_token') ?? '';
-  }
+        return this.accessToken ?? localStorage.getItem('auth_token') ?? '';
+    }
 
     public isAuthenticated(): boolean {
         const token = this.getAuthToken();
         return !!token;
+    }
+
+    public clearAuthToken() {
+        this.accessToken = null;
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('refresh_token');
     }
 }

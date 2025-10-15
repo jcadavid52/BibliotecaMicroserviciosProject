@@ -1,13 +1,18 @@
 <nav>
   <ul>
+    @if(this.router.url != '/books/home'){
     <li>
       <a routerLink="home" routerLinkActive="router-link-active">Inicio</a>
     </li>
+    } @if(tokenService.isAuthenticated()) { @if(tokenService.decodeRoleToken()[0] === 'Admin') {
+
     <li>
       <a routerLink="create" routerLinkActive="router-link-active">Agregar</a>
     </li>
+    }
     <li>
       <a routerLink="reservations" routerLinkActive="router-link-active">Mis Reservas</a>
     </li>
+    }
   </ul>
 </nav>
