@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaCuentas.Identity.Data;
 
@@ -11,9 +12,11 @@ using SistemaCuentas.Identity.Data;
 namespace SistemaCuentas.Identity.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20251017001110_UserAdminDefault2")]
+    partial class UserAdminDefault2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,13 +54,13 @@ namespace SistemaCuentas.Identity.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "aebabbc3-e1bc-4037-ae84-ec94428e0b06",
+                            Id = "d61700b6-c9be-4234-b1e4-e59bdc9bf340",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "bb3dd25f-8a10-4255-9339-98a6000711d3",
+                            Id = "95becdc5-4823-42fa-b8d6-3342b471be7a",
                             Name = "Usuario",
                             NormalizedName = "USUARIO"
                         });
@@ -160,6 +163,24 @@ namespace SistemaCuentas.Identity.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
 
                     b.UseTphMappingStrategy();
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "9776fc44-076b-4b78-ac3e-849622ad700d",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a7430f78-13e0-4a1a-98c7-72ff5397bd5c",
+                            Email = "admin@system.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@SYSTEM.COM",
+                            NormalizedUserName = "ADMIN@SYSTEM.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKoZgfR0Wle679kZYFWPcsM18A5bSGJS2zv1nEJ7KcAA+b7TqKKwG78ujSxvS0VfNQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "b9da3180-9467-468e-baec-f856c97bf08a",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@system.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -226,8 +247,8 @@ namespace SistemaCuentas.Identity.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "01050660-1857-4a26-ab30-1abef1e699e0",
-                            RoleId = "aebabbc3-e1bc-4037-ae84-ec94428e0b06"
+                            UserId = "9776fc44-076b-4b78-ac3e-849622ad700d",
+                            RoleId = "d61700b6-c9be-4234-b1e4-e59bdc9bf340"
                         });
                 });
 
@@ -271,28 +292,6 @@ namespace SistemaCuentas.Identity.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("ApplicationIdentity");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "01050660-1857-4a26-ab30-1abef1e699e0",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "867a676e-94ff-4eaf-b193-2d665e98793d",
-                            Email = "admin@system.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@SYSTEM.COM",
-                            NormalizedUserName = "ADMIN@SYSTEM.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEL5+V1Mu7Se4K4tOhd2LJJrbTqbVa3Xot2NdR1T45pUS2KEmoOJ7tWHgNiMTtfuQag==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "E572914D-04BB-49CC-9708-5E1264781BF0",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@system.com",
-                            Address = "Calle Admin",
-                            Document = "123456789",
-                            DocumentType = "CC",
-                            FullName = "Admin"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

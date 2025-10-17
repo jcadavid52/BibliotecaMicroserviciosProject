@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaCuentas.Identity.Data;
 
@@ -11,9 +12,11 @@ using SistemaCuentas.Identity.Data;
 namespace SistemaCuentas.Identity.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20251017000655_RemoveAdminDefault")]
+    partial class RemoveAdminDefault
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,13 +54,13 @@ namespace SistemaCuentas.Identity.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "aebabbc3-e1bc-4037-ae84-ec94428e0b06",
+                            Id = "61684a0e-8a1e-4530-b80b-f731439a5613",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "bb3dd25f-8a10-4255-9339-98a6000711d3",
+                            Id = "91b26e95-b052-4198-b482-c365c17762a4",
                             Name = "Usuario",
                             NormalizedName = "USUARIO"
                         });
@@ -222,13 +225,6 @@ namespace SistemaCuentas.Identity.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AccountUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "01050660-1857-4a26-ab30-1abef1e699e0",
-                            RoleId = "aebabbc3-e1bc-4037-ae84-ec94428e0b06"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -271,28 +267,6 @@ namespace SistemaCuentas.Identity.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("ApplicationIdentity");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "01050660-1857-4a26-ab30-1abef1e699e0",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "867a676e-94ff-4eaf-b193-2d665e98793d",
-                            Email = "admin@system.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@SYSTEM.COM",
-                            NormalizedUserName = "ADMIN@SYSTEM.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEL5+V1Mu7Se4K4tOhd2LJJrbTqbVa3Xot2NdR1T45pUS2KEmoOJ7tWHgNiMTtfuQag==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "E572914D-04BB-49CC-9708-5E1264781BF0",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@system.com",
-                            Address = "Calle Admin",
-                            Document = "123456789",
-                            DocumentType = "CC",
-                            FullName = "Admin"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

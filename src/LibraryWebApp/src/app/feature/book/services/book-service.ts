@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { BookModel } from "../models/book-model";
-import { bookUrlApi } from "../../../../enviroments/prod";
+import { bookUrlApi } from "../../../../enviroments/urlApi";
 
 @Injectable({
         providedIn: 'root'
